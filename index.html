@@ -11,9 +11,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://source.unsplash.com/1600x900/?coffee'); /* Ссылка на красивый фон */
+            background-image: url('https://source.unsplash.com/1600x900/?space'); /* Ссылка на космический фон */
             background-size: cover;
             font-family: Arial, sans-serif;
+            touch-action: manipulation; /* Предотвращает масштабирование при нажатии на кнопку */
         }
         .container {
             text-align: center;
@@ -41,7 +42,7 @@
 </head>
 <body>
     <div class="container">
-        <div id="counter">0</div>
+        <div id="counter">0</div> <!-- Счетчик нажатий -->
         <button class="round-button" onclick="incrementCounter()">НАЖМИ НА МЕНЯ</button>
     </div>
 
