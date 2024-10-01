@@ -3,65 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Нажимай на кнопку!</title>
+    <title>Игра: Жми на кнопку!</title>
     <style>
         body {
+            background-image: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg');
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg') no-repeat center center fixed;
-            background-size: cover;
+            margin: 0;
             color: white;
+            font-family: 'Arial', sans-serif;
         }
+
+        .container {
+            text-align: center;
+            z-index: 1; /* Чтобы текст был поверх фона */
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
         .button {
-            background: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон */
+            border-radius: 50%; /* Круглая кнопка */
+            width: 150px;
+            height: 150px;
             border: none;
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
+            cursor: pointer;
             font-size: 24px;
-            transition: all 0.3s ease;
+            color: #333; /* Темный цвет текста */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.2s; /* Плавный переход */
         }
+
         .button:hover {
-            background: rgba(0, 150, 255, 0.8);
-            transform: scale(1.1);
+            background-color: rgba(255, 255, 255, 1); /* Ярче при наведении */
+            transform: scale(1.05); /* Немного увеличиваем при наведении */
+        }
+
+        .count {
+            font-size: 36px;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body>
-    <div>
-        <h1>Тапай на кнопку!</h1>
-        <h2 id="timer">15</h2>
-        <button class="button" id="tapButton">ЖМИ</button>
-        <h2 id="score">Нажатий: 0</h2>
+    <div class="container">
+        <h1>Нажми на кнопку!</h1>
+        <button class="button" id="clickButton">ЖМИ</button>
+        <div class="count" id="clickCount">0</div>
     </div>
+
     <script>
         let count = 0;
-        let timer = 15;
-        let interval;
+        const clickButton = document.getElementById("clickButton");
+        const clickCount = document.getElementById("clickCount");
 
-        document.getElementById('tapButton').onclick = function() {
+        clickButton.addEventListener("click", () => {
             count++;
-            document.getElementById('score').innerText = 'Нажатий: ' + count;
-        };
-
-        interval = setInterval(function() {
-            timer--;
-            document.getElementById('timer').innerText = timer;
-
-            if (timer <= 0) {
-                clearInterval(interval);
-                alert('Время вышло! Нажатий: ' + count);
-                // Здесь отправьте результат обратно в бот
-                // Пример: отправить на сервер через fetch или XMLHttpRequest
-                // fetch('https://your-bot-url.com/send-score', {
-                //     method: 'POST',
-                //     body: JSON.stringify({ score: count }),
-                //     headers: { 'Content-Type': 'application/json' }
-                // });
-            }
-        }, 1000);
+            clickCount.innerText = count;
+        });
     </script>
 </body>
 </html>
