@@ -11,7 +11,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url('https://source.unsplash.com/1600x900/?space'); /* Ссылка на космический фон */
+            background-image: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg'); /* Ссылка на изображение из Pinterest */
             background-size: cover;
             font-family: Arial, sans-serif;
             touch-action: manipulation; /* Предотвращает масштабирование при нажатии на кнопку */
@@ -24,26 +24,32 @@
             font-size: 48px; /* Размер шрифта для счетчика */
             margin-bottom: 20px; /* Отступ снизу */
         }
-        .round-button {
+        .cloud-button {
             width: 150px; /* Ширина кнопки */
             height: 150px; /* Высота кнопки */
-            background-color: #ff6347; /* Цвет кнопки */
+            background: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон */
             border: none; /* Убираем рамку */
-            border-radius: 50%; /* Круглая кнопка */
-            color: white; /* Цвет текста на кнопке */
+            border-radius: 75px; /* Круглая кнопка */
+            color: #333; /* Цвет текста на кнопке */
             font-size: 24px; /* Размер шрифта для текста на кнопке */
             cursor: pointer; /* Указатель при наведении */
-            transition: background-color 0.3s; /* Анимация цвета кнопки */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Тень для 3D эффекта */
+            transition: background-color 0.3s, transform 0.3s; /* Анимация цвета кнопки и трансформации */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px); /* Размытие фона за кнопкой */
         }
-        .round-button:hover {
-            background-color: #ff4500; /* Цвет кнопки при наведении */
+        .cloud-button:hover {
+            background-color: rgba(255, 255, 255, 0.9); /* Цвет кнопки при наведении */
+            transform: translateY(-5px); /* Подъем кнопки при наведении */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="counter">0</div> <!-- Счетчик нажатий -->
-        <button class="round-button" onclick="incrementCounter()">НАЖМИ НА МЕНЯ</button>
+        <button class="cloud-button" onclick="incrementCounter()">ЖМИ</button> <!-- Измененный текст на кнопке -->
     </div>
 
     <script>
