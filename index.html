@@ -3,62 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кнопка</title>
+    <title>Нажимай на кнопку!</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            background-image: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg'); /* Ссылка на изображение из Pinterest */
+            background: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg') no-repeat center center fixed;
             background-size: cover;
-            font-family: Arial, sans-serif;
-            touch-action: manipulation; /* Предотвращает масштабирование при нажатии на кнопку */
+            color: white;
         }
-        .container {
-            text-align: center;
-            color: white; /* Цвет текста */
+        .button {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            transition: all 0.3s ease;
         }
-        #counter {
-            font-size: 48px; /* Размер шрифта для счетчика */
-            margin-bottom: 20px; /* Отступ снизу */
-        }
-        .cloud-button {
-            width: 150px; /* Ширина кнопки */
-            height: 150px; /* Высота кнопки */
-            background: rgba(255, 255, 255, 0.7); /* Полупрозрачный белый фон */
-            border: none; /* Убираем рамку */
-            border-radius: 75px; /* Круглая кнопка */
-            color: #333; /* Цвет текста на кнопке */
-            font-size: 24px; /* Размер шрифта для текста на кнопке */
-            cursor: pointer; /* Указатель при наведении */
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Тень для 3D эффекта */
-            transition: background-color 0.3s, transform 0.3s; /* Анимация цвета кнопки и трансформации */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px); /* Размытие фона за кнопкой */
-        }
-        .cloud-button:hover {
-            background-color: rgba(255, 255, 255, 0.9); /* Цвет кнопки при наведении */
-            transform: translateY(-5px); /* Подъем кнопки при наведении */
+        .button:hover {
+            background: rgba(0, 150, 255, 0.8);
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="counter">0</div> <!-- Счетчик нажатий -->
-        <button class="cloud-button" onclick="incrementCounter()">ЖМИ</button> <!-- Измененный текст на кнопке -->
+    <div>
+        <h1>Тапай на кнопку!</h1>
+        <h2 id="timer">15</h2>
+        <button class="button" id="tapButton">ЖМИ</button>
+        <h2 id="score">Нажатий: 0</h2>
     </div>
-
     <script>
-        let count = 0; // Инициализация счетчика
+        let count = 0;
+        let timer = 15;
+        let interval;
 
-        function incrementCounter() {
-            count++; // Увеличиваем счетчик
-            document.getElementById('counter').innerText = count; // Обновляем текст счетчика
-        }
+        document.getElementById('tapButton').onclick = function() {
+            count++;
+            document.getElementById('score').innerText = 'Нажатий: ' + count;
+        };
+
+        interval = setInterval(function() {
+            timer--;
+            document.getElementById('timer').innerText = timer;
+
+            if (timer <= 0) {
+                clearInterval(interval);
+                alert('Время вышло! Нажатий: ' + count);
+                // Здесь отправьте результат обратно в бот
+                // Пример: отправить на сервер через fetch или XMLHttpRequest
+                // fetch('https://your-bot-url.com/send-score', {
+                //     method: 'POST',
+                //     body: JSON.stringify({ score: count }),
+                //     headers: { 'Content-Type': 'application/json' }
+                // });
+            }
+        }, 1000);
     </script>
 </body>
 </html>
