@@ -2,9 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Отключаем масштабирование -->
     <title>Игра: Жми на кнопку!</title>
     <style>
+        html {
+            touch-action: manipulation; /* Запретить масштабирование при взаимодействии */
+        }
+
         body {
             background-image: url('https://i.pinimg.com/564x/6f/28/59/6f285960bbeafc5247d987b3806fe1e9.jpg');
             background-size: cover;
@@ -68,6 +72,11 @@
         clickButton.addEventListener("click", () => {
             count++;
             clickCount.innerText = count;
+        });
+
+        // Отключаем масштабирование
+        document.addEventListener("gesturestart", function (e) {
+            e.preventDefault(); // Предотвращает масштабирование
         });
     </script>
 </body>
