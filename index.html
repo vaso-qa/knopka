@@ -3,68 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интерактивное приложение</title>
+    <title>Кнопка</title>
     <style>
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
             margin: 0;
+            background-image: url('https://source.unsplash.com/1600x900/?coffee'); /* Ссылка на красивый фон */
+            background-size: cover;
             font-family: Arial, sans-serif;
         }
         .container {
             text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            color: white; /* Цвет текста */
         }
-        h1 {
-            color: #333;
+        #counter {
+            font-size: 48px; /* Размер шрифта для счетчика */
+            margin-bottom: 20px; /* Отступ снизу */
         }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
+        .round-button {
+            width: 150px; /* Ширина кнопки */
+            height: 150px; /* Высота кнопки */
+            background-color: #ff6347; /* Цвет кнопки */
+            border: none; /* Убираем рамку */
+            border-radius: 50%; /* Круглая кнопка */
+            color: white; /* Цвет текста на кнопке */
+            font-size: 24px; /* Размер шрифта для текста на кнопке */
+            cursor: pointer; /* Указатель при наведении */
+            transition: background-color 0.3s; /* Анимация цвета кнопки */
         }
-        button:hover {
-            background-color: #45a049;
+        .round-button:hover {
+            background-color: #ff4500; /* Цвет кнопки при наведении */
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Нажми на кнопку!</h1>
-        <button id="actionButton">НАЖМИ НА МЕНЯ</button>
-        <p id="resultMessage" style="margin-top: 20px;"></p>
+        <div id="counter">0</div>
+        <button class="round-button" onclick="incrementCounter()">НАЖМИ НА МЕНЯ</button>
     </div>
 
     <script>
-        // Telegram Web App API
-        const telegram = window.Telegram.WebApp;
+        let count = 0; // Инициализация счетчика
 
-        // Отображаем главную кнопку Telegram
-        telegram.MainButton.setText("Нажми на меня!");
-        telegram.MainButton.show();
-
-        // Обрабатываем нажатие на кнопку
-        document.getElementById('actionButton').addEventListener('click', function() {
-            // Меняем текст на кнопке
-            document.getElementById('resultMessage').innerText = "Кнопка нажата!";
-            telegram.MainButton.hide(); // Скрываем главную кнопку Telegram
-        });
-
-        // Обрабатываем нажатие основной кнопки Telegram
-        telegram.onEvent('main_button_pressed', function() {
-            document.getElementById('resultMessage').innerText = "Ты нажал на кнопку Telegram!";
-            telegram.MainButton.hide(); // Скрываем кнопку после нажатия
-        });
+        function incrementCounter() {
+            count++; // Увеличиваем счетчик
+            document.getElementById('counter').innerText = count; // Обновляем текст счетчика
+        }
     </script>
 </body>
 </html>
